@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uso de objetos en Javascript</title>
+    <style>
+        html{
+                background-color:darkblue;
+            }
+
+        .principal {
+                display: flex;
+                flex-direction: column;
+                width: 90%;
+                align-items: center;
+                text-align: center;
+                align-content: center;
+                justify-content: center;
+            }
+        
+        .contenedor_login{
+                display: flex;
+                margin: 2em;
+                padding: 1em;
+                background: linear-gradient(to bottom right, blue, pink);
+                width: 50%;
+                justify-content: center;
+                align-content: center;
+                flex-direction: row;
+                border-radius: 20px;
+            }
+
+        .datos_login{
+                display: flex;
+                margin: 2em;
+                background-color:burlywood;
+                width: 50%;
+                text-align: center;
+                align-items: center;
+                justify-content: center;
+                align-content: center;
+                flex-direction: column;   
+            }
+
+        .acomodo_boton{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                align-content: center;
+            }
+
+        .txtInput{
+            border-radius: 10px;
+            background-color: cadetblue;
+            width: 70%;
+        }
+
+        .boton{
+                border-radius: 10px;
+                background-color: darkgoldenrod;
+            }
+
+        #imgUsuario{
+            width: 30%;
+            border-radius: 20px;
+        }
+    </style>
+    <script>
+        function valida(){
+            var usuario=document.getElementById("txtUsuario").value;
+            var password=document.getElementById("txtPass").value;
+            let regexusua=new RegExp(/^[a-z0-9_-]{3,16}$/);
+            let regexpass=new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}[^'\s]/);
+            if (regexusua.test(usuario)){
+                if (regexpass.test(password)){
+                    if (usuario=="a1b3456" && password=="ASFFAFD5a8ad$"){
+                        var imagen=document.getElementById("imgUsuario");
+                        imagen.src="icono-circulo-usuario-anonimo.jpg";
+                        alert("Usuario correcto");
+                    } else alert("Usuario incorrecto");
+                } else  alert("El formato de password es incorrecto");    
+            } else alert("El formato de usuario es incorrecto");
+        }
+    </script>
+</head>
+<body>
+<form action="#" method="get">
+<div class="principal">
+    <div class="contenedor_login">
+        <img src="user-profile-icon-free-vector.jpg" alt="Usuario no logeado" id="imgUsuario">
+        <div class="datos_login">
+            <label for="txtUsuario">Usuario</label>
+            <input type="text" id="txtUsuario" name="txtUsuario" class="txtInput">
+            <label for="txtPass">Password</label>
+            <input type="password" id="txtPass" name="txtPass" class="txtInput">
+            <div class="acomodo_boton">
+                <br>
+                <input class="boton" type="button" id="btnIngresa" value="Ingresar" onclick="valida()">
+                <input class="boton" type="reset" value="Cancelar">
+            </div>
+        </div>
+   </div>
+</div>
+</form>
+</body>
+</html>
