@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formulario de Inicio de Sesión</title>
-    <!-- Enlace a CSS de Bootstrap -->
+    <title>Inicio de Sesión</title>
+    
+    <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
         body {
-            /* Imagen de fondo */
+            font-family: 'Poppins', sans-serif;
             background-image: url('https://www.xtrafondos.com/wallpapers/montanas-minimalista-degradado-azul-7869.jpg');
             background-size: cover;
             background-position: center;
@@ -16,59 +20,125 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
+
         .login-container {
-            background: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia */
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             text-align: center;
+            width: 100%;
+            max-width: 400px;
+            animation: fadeIn 1s ease-in-out;
         }
+
         .login-container img {
-            width: 100px;
-            margin-bottom: 1rem;
+            width: 120px;
+            margin-bottom: 1.2rem;
+            border-radius: 50%;
+            border: 2px solid #007bff;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            padding: 10px 12px;
+            border: 1px solid #ced4da;
+            font-size: 16px;
+        }
+
+        .btn-primary, .btn-secondary {
+            border-radius: 12px;
+            padding: 10px 16px;
+            width: 100%;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            border: none;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #495057;
+            transform: translateY(-2px);
+        }
+
+        /* Animación suave */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
+
     <script>
         function valida() {
             var usuario = document.getElementById("txtUsuario").value;
             var password = document.getElementById("txtPass").value;
             let regexusua = /^[a-z0-9_-]{3,16}$/;
             let regexpass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}$/;
+
             if (regexusua.test(usuario)) {
                 if (regexpass.test(password)) {
-                    if (usuario == "a1b3456" && password == "ASFFAFD5a8ad$") {
+                    if (usuario === "a1b3456" && password === "ASFFAFD5a8ad$") {
                         var imagen = document.getElementById("imgUsuario");
-                        imagen.src = "https://icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png";
-                        alert("Usuario correcto");
+                        imagen.src = "https://cdn-icons-png.flaticon.com/512/3177/3177440.png"; // Imagen de usuario logueado
+                        alert("✅ Usuario correcto");
                     } else {
-                        alert("Usuario incorrecto");
+                        alert("❌ Usuario incorrecto");
                     }
                 } else {
-                    alert("El formato de password es incorrecto");
+                    alert("⚠️ El formato de la contraseña es incorrecto");
                 }
             } else {
-                alert("El formato de usuario es incorrecto");
+                alert("⚠️ El formato del usuario es incorrecto");
             }
         }
     </script>
 </head>
+
 <body>
     <div class="login-container">
-        <img src="https://icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="Usuario no logueado" id="imgUsuario">
-        <h2>Iniciar Sesión</h2>
-        <div class="mb-3">
+        <img src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png" alt="Usuario no logueado" id="imgUsuario">
+        <h2 class="mb-4 fw-semibold">Iniciar Sesión</h2>
+
+        <div class="mb-3 text-start">
             <label for="txtUsuario" class="form-label">Usuario</label>
-            <input type="text" id="txtUsuario" name="txtUsuario" class="form-control">
+            <input type="text" id="txtUsuario" name="txtUsuario" class="form-control" placeholder="Ingresa tu usuario">
         </div>
-        <div class="mb-3">
-            <label for="txtPass" class="form-label">Password</label>
-            <input type="password" id="txtPass" name="txtPass" class="form-control">
+
+        <div class="mb-4 text-start">
+            <label for="txtPass" class="form-label">Contraseña</label>
+            <input type="password" id="txtPass" name="txtPass" class="form-control" placeholder="Ingresa tu contraseña">
         </div>
-        <button class="btn btn-primary" type="button" id="btnIngresa" onclick="valida()">Ingresar</button>
-        <button class="btn btn-secondary" type="reset">Cancelar</button>
+
+        <div class="d-grid gap-2">
+            <button class="btn btn-primary" type="button" id="btnIngresa" onclick="valida()">Ingresar</button>
+            <button class="btn btn-secondary" type="reset">Cancelar</button>
+        </div>
     </div>
-    <!-- Enlace a JavaScript de Bootstrap -->
+
+    <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
