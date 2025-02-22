@@ -1,108 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uso de objetos en Javascript</title>
+    <title>Formulario de Inicio de Sesión</title>
+    <!-- Enlace a CSS de Bootstrap -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        html{
-                background-color:darkblue;
-            }
-
-        .principal {
-                display: flex;
-                flex-direction: column;
-                width: 90%;
-                align-items: center;
-                text-align: center;
-                align-content: center;
-                justify-content: center;
-            }
-        
-        .contenedor_login{
-                display: flex;
-                margin: 2em;
-                padding: 1em;
-                background: linear-gradient(to bottom right, blue, pink);
-                width: 50%;
-                justify-content: center;
-                align-content: center;
-                flex-direction: row;
-                border-radius: 20px;
-            }
-
-        .datos_login{
-                display: flex;
-                margin: 2em;
-                background-color:burlywood;
-                width: 50%;
-                text-align: center;
-                align-items: center;
-                justify-content: center;
-                align-content: center;
-                flex-direction: column;   
-            }
-
-        .acomodo_boton{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                align-content: center;
-            }
-
-        .txtInput{
-            border-radius: 10px;
-            background-color: cadetblue;
-            width: 70%;
+        body {
+            /* Imagen de fondo */
+            background-image: url('https://www.xtrafondos.com/wallpapers/montanas-minimalista-degradado-azul-7869.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
-        .boton{
-                border-radius: 10px;
-                background-color: darkgoldenrod;
-            }
-
-        #imgUsuario{
-            width: 30%;
-            border-radius: 20px;
+        .login-container {
+            background: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia */
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .login-container img {
+            width: 100px;
+            margin-bottom: 1rem;
         }
     </style>
     <script>
-        function valida(){
-            var usuario=document.getElementById("txtUsuario").value;
-            var password=document.getElementById("txtPass").value;
-            let regexusua=new RegExp(/^[a-z0-9_-]{3,16}$/);
-            let regexpass=new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}[^'\s]/);
-            if (regexusua.test(usuario)){
-                if (regexpass.test(password)){
-                    if (usuario=="a1b3456" && password=="ASFFAFD5a8ad$"){
-                        var imagen=document.getElementById("imgUsuario");
-                        imagen.src="icono-circulo-usuario-anonimo.jpg";
+        function valida() {
+            var usuario = document.getElementById("txtUsuario").value;
+            var password = document.getElementById("txtPass").value;
+            let regexusua = /^[a-z0-9_-]{3,16}$/;
+            let regexpass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}$/;
+            if (regexusua.test(usuario)) {
+                if (regexpass.test(password)) {
+                    if (usuario == "a1b3456" && password == "ASFFAFD5a8ad$") {
+                        var imagen = document.getElementById("imgUsuario");
+                        imagen.src = "https://icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png";
                         alert("Usuario correcto");
-                    } else alert("Usuario incorrecto");
-                } else  alert("El formato de password es incorrecto");    
-            } else alert("El formato de usuario es incorrecto");
+                    } else {
+                        alert("Usuario incorrecto");
+                    }
+                } else {
+                    alert("El formato de password es incorrecto");
+                }
+            } else {
+                alert("El formato de usuario es incorrecto");
+            }
         }
     </script>
 </head>
 <body>
-<form action="#" method="get">
-<div class="principal">
-    <div class="contenedor_login">
-        <img src="user-profile-icon-free-vector.jpg" alt="Usuario no logeado" id="imgUsuario">
-        <div class="datos_login">
-            <label for="txtUsuario">Usuario</label>
-            <input type="text" id="txtUsuario" name="txtUsuario" class="txtInput">
-            <label for="txtPass">Password</label>
-            <input type="password" id="txtPass" name="txtPass" class="txtInput">
-            <div class="acomodo_boton">
-                <br>
-                <input class="boton" type="button" id="btnIngresa" value="Ingresar" onclick="valida()">
-                <input class="boton" type="reset" value="Cancelar">
-            </div>
+    <div class="login-container">
+        <img src="https://icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="Usuario no logueado" id="imgUsuario">
+        <h2>Iniciar Sesión</h2>
+        <div class="mb-3">
+            <label for="txtUsuario" class="form-label">Usuario</label>
+            <input type="text" id="txtUsuario" name="txtUsuario" class="form-control">
         </div>
-   </div>
-</div>
-</form>
+        <div class="mb-3">
+            <label for="txtPass" class="form-label">Password</label>
+            <input type="password" id="txtPass" name="txtPass" class="form-control">
+        </div>
+        <button class="btn btn-primary" type="button" id="btnIngresa" onclick="valida()">Ingresar</button>
+        <button class="btn btn-secondary" type="reset">Cancelar</button>
+    </div>
+    <!-- Enlace a JavaScript de Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
